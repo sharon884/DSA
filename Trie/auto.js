@@ -85,6 +85,48 @@ class Trie {
         };
 
         return true;
+    };
+
+
+    autocomplete(prefix) {
+    let node = this.root;
+
+    // 1. Traverse to prefix node
+    for (let char of prefix) {
+        if (!node.children[char]) {
+            return []; // no suggestions
+        }
+        node = node.children[char];
     }
 
+    let results = [];
+
+    // 2. DFS helper
+    const dfs = (currentNode, currentWord) => {
+      
+        if (currentNode.isEnd) {
+            results.push(currentWord);
+        }
+       console.log(currentNode.children)
+        for (let char in currentNode.children) {
+            dfs(currentNode.children[char], currentWord + char);
+        }
+    };
+
+    // 3. Start DFS
+    dfs(node, prefix);
+
+    return results;
 }
+
+
+};
+
+
+const trie = new Trie();
+trie.insert("cat");
+trie.insert("car");
+trie.insert("care");
+trie.insert("dog");
+
+console.log(trie.autocomplete("ca"));
