@@ -81,4 +81,20 @@ class Graph {
 
         return false;
     }
-}
+};
+
+
+
+const graph = new Graph();
+graph.addvertex("A");
+graph.addvertex("B");
+graph.addvertex("C");
+graph.addvertex("D");
+graph.addEdge("A","B");
+graph.addEdge("B","C");
+graph.addEdge("C","B");
+graph.addEdge("C","D");
+console.log(graph.hasCycle());
+
+
+
