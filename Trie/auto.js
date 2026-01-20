@@ -245,7 +245,7 @@ class Trie {
 
             for ( let char in currentNode.children ) {
            
-                dfs(currentNode.children[char], currentWord+char);
+                dfs(currentNode.children[char], currentWord+char  );
             };
         };
 
