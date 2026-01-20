@@ -688,3 +688,86 @@
 // pre(node1);
 // level( node1);
 
+
+class Bs {
+    constructor( value) {
+        this.value  = this.value;
+        this.left = null;
+        this.right = null;
+    };
+};
+
+
+const b1 = new Bs(10);
+const b2 = new Bs(20);
+const b3 = new Bs(30);
+const b4 = new Bs(40);
+const b5 = new Bs(50);
+
+b1.left = b2;
+b1.right = b3;
+b2.left = b4;
+b2.right = b5;
+
+function post ( node ) {
+    if ( !node ) return ;
+    if ( node.left ) {
+        post(node.left);
+    };
+
+    if ( node.right ) {
+        post(node.right);
+    };
+
+    console.log(node.value);
+};
+
+
+function pre ( node ) {
+    if ( !node ) return;
+    console.log(node.value);
+    if ( node.left ) {
+        pre(node.left);
+    };
+
+    if ( node.right ) {
+        pre ( node.right);
+    };
+};
+
+
+function inorder( node ) {
+    if ( !node ) return;
+    if ( node.left ) {
+        inorder(node.left);
+    };
+
+    console.log(node.value);
+
+    if ( node.right ) {
+        inorder(node.right);
+    }
+};
+
+
+function bfs ( node ) {
+    if (!node) return;
+    let queue = [ node];
+    while ( queue.length > 0 ) {
+        let current = queue.shift();
+        console.log(current.value);
+
+        if ( current.left ) {
+            queue.push(current.left);
+        };
+
+        if ( current.right ) {
+            queue.push(current.right);
+        };
+    }
+};
+
+
+
+
+
