@@ -501,5 +501,45 @@ class Trie {
     };
 
 
+    auto ( word ) {
+        let node = this.root;
+        for ( let char of word ) {
+            if (!node.children[char] ) {
+                return [];
+            };
 
-}
+            node = node.children[char];
+        };
+
+        let result = [];
+
+        const dfs = ( currentNode, currentWord ) => {
+
+            if ( currentNode.isEnd == true ) {
+                result.push(currentWord);
+            };
+            
+
+            for ( let char in currentNode.children ) {
+                dfs(currentNode.children[char], currentWord + char );
+            };
+
+        };
+
+        dfs( node, word );
+        return result;
+    }
+
+
+
+};
+
+
+const t = new Trie();
+t.insert("cat");
+t.insert("cap");
+t.insert("car");
+t.insert("gap");
+t.insert("cash");
+console.log(t.prefix("ca"));
+console.log(t.auto("ca"))
