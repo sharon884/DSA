@@ -631,3 +631,58 @@
 // }
 
 
+
+class General {
+    constructor(value) {
+        this.value = value;
+        this.children = [];
+    };
+};
+
+
+const node1 = new General(10);
+const node2 = new General(20);
+const node3 = new General(30);
+const node4 = new General(40);
+const node5 = new General(50);
+
+node1.children.push(node2, node3);
+node2.children.push(node4, node5);
+
+function post(node) {
+    if (!node) return;
+    for (let child of node.children) {
+        post(child);
+    };
+    console.log(node.value);
+};
+
+
+function pre(node) {
+
+    if (!node) return;
+    console.log(node.value);
+    for (let child of node.children ) {
+        pre(child);
+    };
+
+};
+
+
+function level(node) {
+    if (!node) return;
+    let queue = [node];
+
+    while (queue.length > 0) {
+        let current = queue.shift();
+        console.log(current.value);
+        for (let node of current.children) {
+            queue.push(node);
+        }
+    };
+
+};
+
+
+post(node1);
+
