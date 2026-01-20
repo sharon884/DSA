@@ -685,4 +685,6 @@ function level(node) {
 
 
 post(node1);
+pre(node1);
+level( node1);
 
