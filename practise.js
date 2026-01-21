@@ -773,3 +773,35 @@
 
 
 
+
+
+
+
+class Bst {
+    constructor ( value )  {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    };
+
+
+    insert(value) {
+         if ( value < this.value) {
+            if ( this.left === null ) {
+                this.left = new Bst(value)
+            }else{
+                this.left.insert(value);
+            }
+         }else {
+            if ( this.right === null ) {
+                this.right = new Bst(value);
+            }else {
+                this.right.insert(value);
+            }
+         }
+    };
+
+
+};
+
+
