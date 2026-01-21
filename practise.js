@@ -935,3 +935,130 @@
 // console.log(g.hasCycle());
 
 
+class TrieNode  {
+    constructor() {
+           this.children = {};
+           this.isEnd = false;
+    };
+
+};
+
+
+class Trie {
+    constructor() {
+     this.root = new TrieNode();
+    };
+
+
+    insert ( word ) {
+         let node = this.root;
+         for ( let char of word ) {
+            if ( !node.children[char] ) {
+                node.children[char] = new TrieNode();
+            };
+
+            node = node.children[char];
+         };
+
+         node.isEnd = true;
+    };
+
+
+    search ( word ) {
+        let node = this.root;
+        for ( let char of word ) {
+            if ( !node.children[char] ) {
+                return false;
+            };
+
+            node = node.children[char];
+        };
+
+        return node.isEnd;
+        
+    };
+
+
+    prefix( word ) {
+        let node = this.root;
+        for ( let char of word ) {
+            if ( !node.children[char] ) {
+                return false;
+            };
+
+            node = node.children[char];
+        };
+
+        return true;
+    };
+
+
+    insertReverse( word ) {
+        let reverse = word.split("").reverse().join("");
+        let node = this.root;
+        for ( let char of  reverse  ){
+            if ( !node.children[char] ) {
+                 node.children[char] = new TrieNode();
+            };
+
+            node = node.children[char];
+        };
+
+        node.isEnd = true;
+     };
+
+
+     suffix ( word ) {
+        let reverse = word.split("").reverse().join("");
+        let node = this.root;
+
+        for ( let char of reverse  ) {
+            if ( !node.children[char] ) {
+                return false;
+            };
+
+            node = node.children[char];
+        };
+
+        return true;
+     };
+  
+
+     auto ( word ) {
+        let node =  this.root;
+        
+      for ( let char of word ) {
+          if( !node.children[char] ) {
+            return [];
+          };
+
+          node = node.children[char];
+      };
+
+      let result = [];
+
+      const dfs = ( currentNode, currentWord ) => {
+
+        if ( currentNode.isEnd === true ) {
+            result.push(currentWord);
+        };
+
+        for ( let char in currentNode.children ) {
+            dfs( currentNode.children[char] , currentWord+char);
+        }
+
+      };
+
+      dfs( node, word);
+      
+      return result;
+
+     }
+};
+
+const t = new Trie();
+t.insert("cap");
+t.insert('caps');
+t.insert("cash");
+console.log(t.prefix("ca"));
+console.log(t.auto("ca"))
